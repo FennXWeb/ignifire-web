@@ -3,7 +3,6 @@
   "version": "0.1.43",
   "private": true,
   "description": "The streamlined, authenticated web player for Ignifire.",
-  "type": "module",
   "main": "app.js",
   "scripts": {
     "build": "node build.mjs",
