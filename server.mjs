@@ -37,6 +37,16 @@ const server = createServer(async (request, response) => {
       return;
     }
     const pathname = decodeURIComponent(new URL(request.url || '/', 'http://localhost').pathname);
+    if (pathname === '/health') {
+      const body = JSON.stringify({ ok: true, service: 'ignifire-web' });
+      response.writeHead(200, {
+        'Content-Type': 'application/json; charset=utf-8',
+        'Content-Length': Buffer.byteLength(body),
+        'Cache-Control': 'no-store'
+      });
+      response.end(request.method === 'HEAD' ? undefined : body);
+      return;
+    }
     const relativePath = pathname === '/' ? 'index.html' : pathname.replace(/^\/+/, '');
     const filePath = path.resolve(staticRoot, relativePath);
     if (filePath !== staticRoot && !filePath.startsWith(`${staticRoot}${path.sep}`)) {

@@ -37,8 +37,12 @@ jobs:
             --exclude 'package.json' \
             --exclude 'package-lock.json' \
             --exclude 'build.mjs' \
+            --exclude 'app.js' \
+            --exclude 'client.js' \
             --exclude 'server.mjs' \
             "$RUNNER_TEMP/ignifire-full-app/web-player/" ./
+          cp "$RUNNER_TEMP/ignifire-full-app/web-player/app.js" client.js
+          sed -i 's#src="./app.js"#src="./client.js"#' index.html
 
       - name: Commit changes when the web player changed
         run: |

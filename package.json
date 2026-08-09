@@ -4,9 +4,10 @@
   "private": true,
   "description": "The streamlined, authenticated web player for Ignifire.",
   "type": "module",
+  "main": "app.js",
   "scripts": {
     "build": "node build.mjs",
-    "start": "node server.mjs"
+    "start": "node app.js"
   },
   "engines": {
     "node": ">=20"
