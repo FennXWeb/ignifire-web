@@ -2,7 +2,7 @@
 
 This directory is the production static web player for `https://ignifire.app`.
 
-The `main` branch is automatically synchronized from the `web-player/` directory on the full Ignifire app's `beta` branch. The scheduled workflow checks every 15 minutes and can also be run manually from GitHub Actions. Repository-specific deployment files are preserved during synchronization.
+The `main` branch is automatically synchronized from the `web-player/` directory on the full Ignifire app's `beta` branch. The scheduled workflow checks every five minutes and can also be run manually from GitHub Actions. Repository-specific deployment files are preserved during synchronization.
 
 It intentionally includes only:
 
