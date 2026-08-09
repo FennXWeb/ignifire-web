@@ -37,6 +37,7 @@ jobs:
             --exclude 'package.json' \
             --exclude 'package-lock.json' \
             --exclude 'build.mjs' \
+            --exclude 'server.mjs' \
             "$RUNNER_TEMP/ignifire-full-app/web-player/" ./
 
       - name: Commit changes when the web player changed

@@ -1,11 +1,12 @@
 {
   "name": "ignifire-web",
-  "version": "0.1.40",
+  "version": "0.1.43",
   "private": true,
   "description": "The streamlined, authenticated web player for Ignifire.",
   "type": "module",
   "scripts": {
-    "build": "node build.mjs"
+    "build": "node build.mjs",
+    "start": "node server.mjs"
   },
   "engines": {
     "node": ">=20"
