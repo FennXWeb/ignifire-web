@@ -31,7 +31,9 @@ jobs:
         run: |
           rsync -a --delete \
             --exclude '.git/' \
+            --exclude '.gitignore' \
             --exclude '.github/' \
+            --exclude 'README.md' \
             --exclude 'package.json' \
             --exclude 'package-lock.json' \
             --exclude 'build.mjs' \
