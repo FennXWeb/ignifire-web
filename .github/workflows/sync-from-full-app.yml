@@ -39,6 +39,8 @@ jobs:
             --exclude 'build.mjs' \
             --exclude 'app.js' \
             --exclude 'client.js' \
+            --exclude 'health' \
+            --exclude 'health.json' \
             --exclude 'server.mjs' \
             "$RUNNER_TEMP/ignifire-full-app/web-player/" ./
           cp "$RUNNER_TEMP/ignifire-full-app/web-player/app.js" client.js
