@@ -45,6 +45,8 @@ jobs:
             "$RUNNER_TEMP/ignifire-full-app/web-player/" ./
           cp "$RUNNER_TEMP/ignifire-full-app/web-player/app.js" client.js
           sed -i 's#src="./app.js"#src="./client.js"#' index.html
+          INSTALLER_URL=$(node -p "JSON.parse(require('fs').readFileSync('$RUNNER_TEMP/ignifire-full-app/updates/latest.json','utf8')).downloadUrl")
+          INSTALLER_URL="$INSTALLER_URL" node -e "const fs=require('fs');for(const file of ['client.js','index.html']){const source=fs.readFileSync(file,'utf8');fs.writeFileSync(file,source.replace(/https:\/\/github\.com\/FennXWeb\/firefly-music-player\/releases\/download\/beta-v[^/'\"]+\/Ignifire-[^/'\"]+-Setup\.exe/g,process.env.INSTALLER_URL))}"
 
       - name: Commit changes when the web player changed
         run: |
