@@ -29,6 +29,6 @@ The account and web origins are hard-coded to their production HTTPS domains. Do
 
 ## Hostinger Git deployment
 
-Connect this public repository's `main` branch to the `ignifire.app` website in Hostinger. Use `npm run build` as the build command and `dist` as the output directory. Hostinger will then redeploy when the synchronization workflow pushes an updated web player to `main`.
+Connect this public repository's `main` branch to the `ignifire.app` website in Hostinger. Use `npm run build` as the build command and `./` as the output directory. The root output is required so Hostinger includes the Node entry file and `package.json` in its `nodejs` runtime directory; the server automatically serves the generated `dist` assets. Hostinger will then redeploy when the synchronization workflow pushes an updated web player to `main`.
 
-If Hostinger provisions the site as a Node application, use `app.js` as the entry file. The build copies the server entry point into `dist`, so this works whether Hostinger resolves the entry from the repository root or the output directory. The included server binds to Hostinger's assigned `PORT` and serves the same `dist` output. You can verify the running process at `/health`.
+Use `app.js` as the entry file. The included server binds to Hostinger's assigned `PORT` and serves the generated `dist` output. You can verify the running process at `/health`.
