@@ -1,0 +1,51 @@
+name: Sync from Ignifire beta
+
+on:
+  schedule:
+    - cron: '*/15 * * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: sync-from-ignifire-beta
+  cancel-in-progress: true
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the web repository
+        uses: actions/checkout@v4
+
+      - name: Read the latest web player from the full app beta branch
+        env:
+          SOURCE_REPOSITORY: https://github.com/FennXWeb/firefly-music-player.git
+          SOURCE_BRANCH: beta
+        run: |
+          git clone --depth 1 --branch "$SOURCE_BRANCH" "$SOURCE_REPOSITORY" "$RUNNER_TEMP/ignifire-full-app"
+          test -f "$RUNNER_TEMP/ignifire-full-app/web-player/index.html"
+
+      - name: Publish the web-player subtree
+        run: |
+          rsync -a --delete \
+            --exclude '.git/' \
+            --exclude '.github/' \
+            --exclude 'package.json' \
+            --exclude 'package-lock.json' \
+            --exclude 'build.mjs' \
+            "$RUNNER_TEMP/ignifire-full-app/web-player/" ./
+
+      - name: Commit changes when the web player changed
+        run: |
+          SOURCE_SHA=$(git -C "$RUNNER_TEMP/ignifire-full-app" rev-parse --short=12 HEAD)
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if git diff --cached --quiet; then
+            echo "The web player is already current."
+            exit 0
+          fi
+          git commit -m "Sync Ignifire web player from beta ${SOURCE_SHA}"
+          git push origin main
