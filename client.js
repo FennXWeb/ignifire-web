@@ -1,6 +1,6 @@
 const ACCOUNT_ORIGIN='https://accounts.ignifire.app';
 const DOWNLOAD_MANIFEST_URL='https://raw.githubusercontent.com/FennXWeb/firefly-music-player/beta/updates/latest.json';
-let downloadUrl='https://github.com/FennXWeb/firefly-music-player/releases/download/beta-v0.1.50/Ignifire-0.1.50-Setup.exe';
+let downloadUrl='https://github.com/FennXWeb/firefly-music-player/releases/download/beta-v0.1.51/Ignifire-0.1.51-Setup.exe';
 const state={user:null,library:null,cloud:{revision:0,syncedAt:null,storageUsed:0,catalogTrackCount:0,streamableTrackCount:0,missingTrackCount:0},view:'home',query:'',queue:[],queueOriginal:[],index:-1,shuffle:false,repeat:'off'};
 const $=selector=>document.querySelector(selector),$$=selector=>[...document.querySelectorAll(selector)];
 const audio=$('#audio');
